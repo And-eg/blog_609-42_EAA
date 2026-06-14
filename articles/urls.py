@@ -1,9 +1,10 @@
 from django.urls import path
 from articles import views
 
+app_name = 'articles'
+
 urlpatterns = [
-    path('', views.article_list, name='article_list'),
+    path('', views.article_list, name='list'),
+    path('create/', views.article_create, name='create'),
     path('<slug:slug>/', views.article_item, name='article_item'),
-    path('about/', views.about, name='about'),
-    path('', views.homepage, name='homepage'),
 ]

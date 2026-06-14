@@ -8,6 +8,6 @@
         {{ form.as_p }}
         <button type="submit">Зарегистрироваться</button>
     </form>
-    <p>Уже есть аккаунт? <a href="/accounts/login/">Вход</a></p>
+    <p>Уже есть аккаунт? <a href="{% url 'accounts:login' %}">Вход</a></p>
 </div>
 {% endblock %}

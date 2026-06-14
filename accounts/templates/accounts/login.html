@@ -1,13 +1,16 @@
 {% extends "base_layout.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
 
 {% block content %}
-<div class="card" style="max-width: 500px; margin: 50px auto;">
-    <h2>Вход</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Войти</button>
-    </form>
-    <p>Нет аккаунта? <a href="/accounts/signup/">Регистрация</a></p>
-</div>
-{% endblock %}
+<h1>Login</h1>
+<form method="post" action="{% url 'accounts:login' %}">
+    {% csrf_token %}
+    {{ form }}
+    {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+    <button type="submit">Login</button>
+</form>
+{% endblock content %}

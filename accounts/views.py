@@ -19,12 +19,12 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return HttpResponseRedirect('/articles')
+            if 'next' in request.POST:
+                return redirect(request.POST['next'])
+            return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request,
-                  template_name='accounts/login.html',
-                  context={'form': form})
+    return render(request, template_name='accounts/login.html', context={'form': form})
 
 def logout_view(request):
     if request.method == 'POST':
